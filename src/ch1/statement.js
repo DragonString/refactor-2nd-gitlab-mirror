@@ -12,11 +12,7 @@ function statement(invoice, plays) {
         result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`
         totalAmount += amountFor(perf);
     }
-    let volumeCredits = 0;
-    for (let perf of invoice.performances) {
-        volumeCredits += volumeCreditsFor(perf);
-    }
-
+    let volumeCredits = totalVolumeCredits();
 
     result += `총액: ${usd(totalAmount / 100)}\n`;
     result += `적립 포인트: ${volumeCredits}점\n`;
@@ -56,13 +52,21 @@ function statement(invoice, plays) {
         let result = 0;
         result += Math.max(aPerformance.audience - 30, 0);
         if ("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5);
-        return result
+        return result;
     }
 
     function usd(aNumber) {
         return new Intl.NumberFormat(
             "en-US",
             {style: "currency", currency: "USD", minimumFractionDigits: 2}).format(aNumber / 100);
+    }
+
+    function totalVolumeCredits() {
+        let volumeCredits = 0;
+        for (let perf of invoice.performances) {
+            volumeCredits += volumeCreditsFor(perf);
+        }
+        return volumeCredits;
     }
 }
 
