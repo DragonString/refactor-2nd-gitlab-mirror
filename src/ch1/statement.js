@@ -12,10 +12,8 @@ function statement(invoice, plays) {
         result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`
         totalAmount += amountFor(perf);
     }
-    let volumeCredits = totalVolumeCredits();
-
     result += `총액: ${usd(totalAmount / 100)}\n`;
-    result += `적립 포인트: ${volumeCredits}점\n`;
+    result += `적립 포인트: ${totalVolumeCredits()}점\n`;
 
     return result;
 
