@@ -12,7 +12,7 @@ export default function createStatementData(invoice, plays) {
         result.amount = amountFor(result);
         result.volumeCredits = volumeCreditsFor(result);
 
-        return result
+        return result;
     }
 
     function playFor(aPerformance) {
