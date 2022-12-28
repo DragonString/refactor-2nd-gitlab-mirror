@@ -52,4 +52,5 @@ function usd(aNumber) {
 const invoicesJson = require('./invoices.json');
 const playsJson = require('./plays.json');
 
-console.log(statement(invoicesJson[0], playsJson));
+// console.log(statement(invoicesJson[0], playsJson));
+console.log(htmlStatement(invoicesJson[0], playsJson));
