@@ -50,18 +50,13 @@ export default function createStatementData(invoice, plays) {
         const result = Object.assign({}, aPerformance); // 얕은 복사 수행
         result.play = calculator.play;
         result.amount = calculator.amount;
-        result.volumeCredits = volumeCreditsFor(result);
+        result.volumeCredits = calculator.volumeCredits;
 
         return result;
     }
 
-
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
-    }
-
-    function volumeCreditsFor(aPerformance) {
-        return new PerformanceCalculator(aPerformance, playFor(aPerformance)).volumeCredits;
     }
 
     function totalAmount(data) {
@@ -73,6 +68,5 @@ export default function createStatementData(invoice, plays) {
         return data.performances
             .reduce((total, p) => total + p.volumeCredits, 0);
     }
-
 
 }
